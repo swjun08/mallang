@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>말랑 팝업</title>
+<style>
+@font-face{font-family:'Pretendard Variable';src:url('../fonts/PretendardVariable.woff2') format('woff2');font-weight:100 900}
+:root{--ink:#14171f;--muted:#6b7280;--faint:#9ca3af;--line:#e5e7eb;--sub:#f3f4f6;--ml:#177a59;--ml-bg:#e3f4ec;--ml-bar:#7fcfab}
+*{box-sizing:border-box}
+body{margin:0;background:#dfe1e5;font:13px/1.5 'Pretendard Variable',-apple-system,sans-serif;letter-spacing:-.01em;color:var(--ink);display:grid;place-items:start center;padding:24px}
+.pop{width:340px;background:#fff;border-radius:14px;box-shadow:0 2px 6px rgba(0,0,0,.12),0 16px 40px -10px rgba(0,0,0,.25);overflow:hidden}
+.top{display:flex;align-items:center;gap:8px;padding:14px 16px 0}
+.top b{font-size:15px}
+.tg{margin-left:auto;width:36px;height:22px;border-radius:999px;background:var(--ink);position:relative}
+.tg:after{content:'';position:absolute;right:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+.hero{display:flex;align-items:center;gap:14px;padding:18px 16px 20px}
+.hero img{width:84px}
+.hero p{margin:0;font-size:19px;line-height:1.4;font-weight:650;letter-spacing:-.03em}
+.hero p em{font-style:normal;color:var(--ml)}
+.hero small{display:block;margin-top:4px;font-size:12.5px;font-weight:400;color:var(--muted);letter-spacing:-.01em}
+.sec{padding:14px 16px;border-top:1px solid var(--line)}
+.lab{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:8px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);padding:3px;background:var(--sub);border-radius:999px}
+.seg span{text-align:center;padding:6px 0;border-radius:999px;font-weight:600;color:var(--muted)}
+.seg .on{background:var(--ink);color:#fff}
+.hint{margin:8px 2px 0;color:var(--faint);font-size:12px}
+.bar{display:grid;grid-template-columns:58px 1fr 22px;align-items:center;gap:8px;margin:7px 0;font-size:12.5px}
+.bar i{height:8px;border-radius:4px;background:var(--sub);position:relative;overflow:hidden}
+.bar i:before{content:'';position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ml-bar);border-radius:4px}
+.bar span{text-align:right;color:var(--muted)}
+.link{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:1px solid var(--line);color:var(--ink)}
+.link span{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="pop">
+  <div class="top"><b>말랑</b><span class="tg" aria-label="켜짐"></span></div>
+  <div class="hero">
+    <img src="../assets/mallang-happy.png" alt="">
+    <p>오늘 댓글 <em>41개</em>를<br>말랑하게 바꿨어요<small>보기 힘든 댓글 4개는 가렸어요</small></p>
+  </div>
+  <div class="sec">
+    <div class="lab">순화 강도</div>
+    <div class="seg"><span>약하게</span><span class="on">보통</span><span>강하게</span></div>
+    <p class="hint">욕설·비하에 조롱까지 바꿔요</p>
+  </div>
+  <div class="sec">
+    <div class="lab">오늘 바꾼 이유<span>전체 45</span></div>
+    <div class="bar">욕설<i style="--w:62%"></i><span>19</span></div>
+    <div class="bar">조롱<i style="--w:44%"></i><span>13</span></div>
+    <div class="bar">외모 비하<i style="--w:24%"></i><span>7</span></div>
+    <div class="bar">혐오<i style="--w:14%"></i><span>4</span></div>
+    <div class="bar">비꼼<i style="--w:8%"></i><span>2</span></div>
+  </div>
+  <div class="link">문제없다고 한 댓글<span>3개 ›</span></div>
+</div>
+</body>
+</html>

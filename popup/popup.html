@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>말랑</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<main class="pop">
+  <header class="top">
+    <b>말랑</b>
+    <button type="button" class="tg" id="enabled" role="switch" aria-checked="true" aria-label="말랑 켜기"></button>
+  </header>
+
+  <section class="hero">
+    <img id="hero-img" src="../assets/mallang-happy.png" alt="">
+    <p id="hero-text"></p>
+  </section>
+
+  <section class="sec">
+    <div class="lab">순화 강도</div>
+    <div class="seg" id="level" role="radiogroup" aria-label="순화 강도">
+      <button type="button" role="radio" data-v="1">약하게</button>
+      <button type="button" role="radio" data-v="2">보통</button>
+      <button type="button" role="radio" data-v="3">강하게</button>
+    </div>
+    <p class="hint" id="level-hint"></p>
+  </section>
+
+  <section class="sec" id="types-sec" hidden>
+    <div class="lab">오늘 바꾼 이유<span id="types-total"></span></div>
+    <div id="types"></div>
+  </section>
+
+  <section class="sec" id="key-sec">
+    <div class="lab">AI 연결</div>
+    <form id="key-form" class="key">
+      <input id="key" type="password" autocomplete="off" spellcheck="false" placeholder="Claude API 키 붙여 넣기 (sk-ant-…)" aria-label="Claude API 키">
+      <button type="submit" class="btn ink">저장</button>
+    </form>
+    <p class="hint bad" id="key-error" role="alert" hidden></p>
+    <div id="key-set" class="key-set" hidden><span id="key-label"></span><button type="button" class="btn" id="key-clear">키 지우기</button></div>
+    <div id="ai-info" class="ai-info" hidden>
+      <p id="ai-usage"></p>
+      <p id="ai-state"></p>
+      <a href="https://console.anthropic.com/settings/billing" target="_blank" rel="noopener">남은 크레딧은 Claude Console에서 볼 수 있어요 ↗</a>
+    </div>
+    <p class="hint" id="key-hint">키가 없어도 욕설은 가려요. 키를 넣으면 가리는 대신 말랑하게 바꿔요. 키는 이 브라우저에만 저장돼요.</p>
+  </section>
+
+  <footer class="link" id="ex-row" hidden>문제없다고 한 댓글<button type="button" class="btn" id="ex-clear"></button></footer>
+</main>
+<script src="popup.js"></script>
+</body>
+</html>

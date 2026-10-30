@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "말랑 - 댓글을 말랑하게",
+  "version": "0.1.0",
+  "minimum_chrome_version": "111",
+  "description": "유튜브 댓글의 의견은 남기고 공격적인 표현만 걷어내 보여 줘요. 원문은 언제든 다시 볼 수 있어요.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://api.anthropic.com/*"],
+  "background": { "service_worker": "src/background.js" },
+  "action": {
+    "default_title": "말랑",
+    "default_popup": "popup/popup.html",
+    "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" }
+  },
+  "icons": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/dict.js", "src/filter.js", "src/content.js", "src/coach.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    { "resources": ["assets/*.png", "icons/*.png", "fonts/*.woff2"], "matches": ["https://www.youtube.com/*"] }
+  ]
+}

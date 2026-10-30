@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>말랑 목업 — 유튜브 댓글</title>
+<style>
+@font-face{font-family:'Pretendard Variable';src:url('../fonts/PretendardVariable.woff2') format('woff2');font-weight:100 900}
+:root{
+  --yt-text:#0f0f0f;--yt-sub:#606060;--yt-line:#e5e5e5;--yt-chip:#f2f2f2;
+  --ml-font:'Pretendard Variable',-apple-system,'Apple SD Gothic Neo',sans-serif;
+  --ink:#14171f;--muted:#6b7280;--line:#e5e7eb;--sub:#f3f4f6;
+  --ml:#177a59;--ml-bg:#e3f4ec;--ml-line:#bfe6d4;--danger:#e5484d;
+  --float:0 1px 2px rgba(20,23,31,.06),0 16px 40px -12px rgba(20,23,31,.22),0 0 0 1px var(--line);
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--yt-text);font-family:Roboto,'Apple SD Gothic Neo',sans-serif;font-size:14px}
+header{height:56px;display:flex;align-items:center;padding:0 16px;gap:16px}
+.logo{display:flex;align-items:center;gap:4px;font-weight:700;font-size:19px;letter-spacing:-.6px}
+.logo i{width:28px;height:20px;background:#f00;border-radius:6px;position:relative}
+.logo i:after{content:'';position:absolute;left:11px;top:6px;border-left:8px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent}
+.search{margin:0 auto;width:540px;height:40px;border:1px solid #ccc;border-radius:40px;padding:0 16px;display:flex;align-items:center;color:#888}
+.hb{width:24px;height:16px;border-top:2px solid #0f0f0f;border-bottom:2px solid #0f0f0f;position:relative}.hb:after{content:'';position:absolute;left:0;right:0;top:5px;border-top:2px solid #0f0f0f}
+.page{display:grid;grid-template-columns:860px 380px;gap:24px;padding:12px 24px 80px;justify-content:center}
+.video{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#3b4252,#1d2129);position:relative;overflow:hidden}
+.video .bar{position:absolute;left:12px;right:12px;bottom:14px;height:3px;background:rgba(255,255,255,.3);border-radius:2px}
+.video .bar:before{content:'';position:absolute;inset:0 62% 0 0;background:#f00;border-radius:2px}
+h1{font-size:20px;font-weight:700;margin:12px 0 8px;letter-spacing:-.3px}
+.ch{display:flex;align-items:center;gap:12px}
+.av{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:600;font-size:15px}
+.sm{width:24px;height:24px;font-size:11px}
+.cm .av{width:40px;height:40px}
+.sub-btn{background:#0f0f0f;color:#fff;border-radius:18px;padding:9px 16px;font-weight:600;margin-left:12px}
+.desc{background:var(--yt-chip);border-radius:12px;padding:12px;margin:14px 0 24px;font-size:14px;line-height:20px}
+.chead{display:flex;align-items:center;gap:32px;margin-bottom:24px}
+.chead>b{font-size:20px}
+.cm{display:flex;gap:16px;margin-bottom:24px}
+.who{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.who span{font-weight:400;color:var(--yt-sub)}
+.body{margin:2px 0 6px;line-height:20px}
+.acts{display:flex;gap:16px;color:var(--yt-sub);font-size:12px;align-items:center}
+.acts b{font-weight:600;color:var(--yt-text)}
+.rec{display:flex;gap:8px;margin-bottom:12px}.rec i{width:168px;height:94px;border-radius:8px;background:#e9e9e9;flex:none}
+.rec p{margin:0 0 6px;height:12px;background:#ececec;border-radius:4px}.rec p.s{width:60%}
+
+/* ── 말랑이 넣는 것: 전부 Pretendard, 잉크 한 색 + 민트(=말랑이 손댐) ── */
+.ml{font-family:var(--ml-font);letter-spacing:-.01em}
+.ml-chip{display:inline-flex;align-items:center;gap:3px;height:20px;padding:0 8px 0 3px;border-radius:999px;background:var(--ml-bg);color:var(--ml);font:500 11.5px/1 var(--ml-font);border:0;cursor:pointer}
+.ml-chip img{width:16px;height:14px;object-fit:contain}
+.ml-chip[aria-expanded=true]{box-shadow:inset 0 0 0 1px var(--ml-line)}
+.ml-card{margin:10px 0 12px;width:520px;border-radius:14px;background:#fff;box-shadow:var(--float);padding:14px 16px 14px;font:13px/1.55 var(--ml-font);color:var(--ink)}
+.ml-lab{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--sub);color:var(--muted);margin-bottom:6px}
+.ml-orig{color:var(--muted);margin:0 0 12px}
+.ml-orig em{font-style:normal;color:var(--ink);text-decoration:underline wavy var(--danger);text-decoration-thickness:1px;text-underline-offset:3px}
+.ml-why{display:flex;gap:8px;align-items:baseline;padding:10px 0 12px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+.ml-why b{color:var(--ink);font-weight:600}
+.ml-row{display:flex;gap:6px}
+.ml-btn{height:30px;padding:0 14px;border-radius:999px;border:0;font:600 12.5px var(--ml-font);cursor:pointer;background:var(--sub);color:var(--ink)}
+.ml-btn.ink{background:var(--ink);color:#fff}
+.ml-btn.ghost{background:transparent;color:var(--muted)}
+.ml-hidden{position:relative;display:inline-block}
+.ml-hidden .t{filter:blur(5px);opacity:.55;user-select:none}
+.ml-hidden .o{position:absolute;left:-4px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;padding:3px 3px 3px 10px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line);font:12.5px var(--ml-font);color:var(--muted)}
+.ml-hidden .o button{height:22px;padding:0 10px;border-radius:999px;border:0;background:var(--sub);font:600 12px var(--ml-font);color:var(--ink);cursor:pointer}
+.coach{max-width:600px}
+.acts svg{width:18px;height:18px;fill:none;stroke:#0f0f0f;stroke-width:1.6}
+.ml-status{display:flex;align-items:center;gap:6px;margin-left:auto;font:13px var(--ml-font);color:var(--muted)}
+.ml-status img{width:22px}
+.ml-status b{color:var(--ml);font-weight:600}
+.input{flex:1;border-bottom:1px solid var(--yt-text);padding:6px 0 6px;font-size:14px}
+.coach{margin-top:10px;display:flex;gap:12px;align-items:flex-start;font:13px/1.5 var(--ml-font);color:var(--ink)}
+.coach img{width:38px;margin-top:2px}
+.coach .bub{flex:1;background:#fff;border-radius:14px;box-shadow:var(--float);padding:12px 14px}
+.coach .sug{background:var(--ml-bg);color:#0f5c43;border-radius:10px;padding:8px 12px;margin:6px 0 10px;font-size:14px}
+.post{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
+.post span{padding:9px 16px;border-radius:18px;font-weight:600}
+.post .on{background:#065fd4;color:#fff}
+</style>
+</head>
+<body>
+<header><div class="hb"></div><div class="logo"><i></i>YouTube</div><div class="search">검색</div><div class="av sm" style="background:#7c6cd6">서</div></header>
+<div class="page">
+<main>
+  <div class="video"><div class="bar"></div></div>
+  <h1>요즘 유행하는 편집 스타일 그대로 따라 해 봤습니다</h1>
+  <div class="ch"><div class="av" style="background:#e06c4f">편</div><div><b>편집하는 민지</b><div style="font-size:12px;color:var(--yt-sub)">구독자 18.2만명</div></div><span class="sub-btn">구독</span></div>
+  <div class="desc"><b>조회수 41만회 · 3일 전</b><br>요즘 숏폼에서 많이 보이는 편집 스타일을 처음부터 끝까지 따라 해 봤어요. 사용한 프로그램은 고정 댓글에…</div>
+
+  <div class="chead"><b>댓글 1,284개</b><span>☰ 정렬 기준</span>
+    <div class="ml-status ml"><img src="../assets/mallang-neutral.png" alt="">이 영상에서 <b>12개</b>를 말랑하게 바꿨어요</div>
+  </div>
+
+  <!-- 답글 코치 -->
+  <div class="cm" style="margin-bottom:32px">
+    <div class="av" style="background:#7c6cd6">서</div>
+    <div style="flex:1">
+      <div class="input">이걸 영상이라고 올린 거면 진짜 생각이 없는 듯</div>
+      <div class="coach ml">
+        <img src="../assets/mallang-surprised.png" alt="">
+        <div class="bub">
+          이렇게 써 보면 어때요? 하고 싶은 말은 그대로예요.
+          <div class="sug">이번 영상은 구성이 좀 아쉬웠어요. 다음 편 기대할게요.</div>
+          <div class="ml-row"><button class="ml-btn ink">바꾸기</button><button class="ml-btn ghost">그대로 쓰기</button></div>
+        </div>
+      </div>
+      <div class="post"><span>취소</span><span class="on">댓글</span></div>
+    </div>
+  </div>
+
+  <div class="cm"><div class="av" style="background:#3f8fd8">하</div><div>
+    <div class="who">@haru_film <span>2시간 전</span></div>
+    <p class="body">3:12 전환 어떻게 하신 건지 알려 주실 수 있나요? 너무 자연스러워요</p>
+    <div class="acts"><svg viewBox="0 0 24 24"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> 214 <svg viewBox="0 0 24 24" style="transform:scale(1,-1)"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> <b>답글</b></div></div></div>
+
+  <div class="cm"><div class="av" style="background:#d1a03b">화</div><div>
+    <div class="who">@hwanan123 <span>3시간 전</span><button class="ml-chip" aria-expanded="true"><img src="../assets/mallang-neutral.png" alt="">말랑</button></div>
+    <p class="body">영상 구성이 많이 아쉬웠어요. 다음엔 더 기대할게요.</p>
+    <div class="ml-card">
+      <span class="ml-lab">원문</span>
+      <p class="ml-orig"><em>뇌가 없나 ㅋㅋ</em> 이걸 영상이라고 올림?</p>
+      <div class="ml-why"><b>조롱</b>상대의 지능을 깎아내리는 표현을 빼고, 영상이 아쉽다는 의견은 남겼어요.</div>
+      <div class="ml-row"><button class="ml-btn ink">원문으로 보기</button><button class="ml-btn">문제없는 댓글이에요</button></div>
+    </div>
+    <div class="acts"><svg viewBox="0 0 24 24"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> 12 <svg viewBox="0 0 24 24" style="transform:scale(1,-1)"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> <b>답글</b></div></div></div>
+
+  <div class="cm"><div class="av" style="background:#5aa36a">민</div><div>
+    <div class="who">@minchoNo <span>5시간 전</span><button class="ml-chip"><img src="../assets/mallang-neutral.png" alt="">말랑</button></div>
+    <p class="body">자막 폰트가 영상이랑 잘 안 어울리는 것 같아요.</p>
+    <div class="acts"><svg viewBox="0 0 24 24"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> 8 <svg viewBox="0 0 24 24" style="transform:scale(1,-1)"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> <b>답글</b></div></div></div>
+
+  <div class="cm"><div class="av" style="background:#8a8f99">익</div><div>
+    <div class="who">@user-k2x9 <span>6시간 전</span></div>
+    <p class="body"><span class="ml-hidden"><span class="t">꺼져 진짜 다시는 올리지 마 이 영상 보는 시간이 아깝다</span><span class="o ml">말랑이 가린 댓글이에요 <button>보기</button></span></span></p>
+    <div class="acts"><svg viewBox="0 0 24 24"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> 3 <svg viewBox="0 0 24 24" style="transform:scale(1,-1)"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> <b>답글</b></div></div></div>
+
+  <div class="cm"><div class="av" style="background:#c0619a">유</div><div>
+    <div class="who">@yuna.log <span>1일 전</span></div>
+    <p class="body">편집 따라 하려고 왔다가 영상 자체가 재밌어서 끝까지 봤네요 ㅋㅋ</p>
+    <div class="acts"><svg viewBox="0 0 24 24"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> 96 <svg viewBox="0 0 24 24" style="transform:scale(1,-1)"><path d="M7 10v11H3V10h4zm0 0 4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg> <b>답글</b></div></div></div>
+</main>
+<aside>
+  <div class="rec"><i></i><div style="flex:1"><p></p><p class="s"></p></div></div>
+  <div class="rec"><i></i><div style="flex:1"><p></p><p class="s"></p></div></div>
+  <div class="rec"><i></i><div style="flex:1"><p></p><p class="s"></p></div></div>
+  <div class="rec"><i></i><div style="flex:1"><p></p><p class="s"></p></div></div>
+  <div class="rec"><i></i><div style="flex:1"><p></p><p class="s"></p></div></div>
+</aside>
+</div>
+</body>
+</html>
