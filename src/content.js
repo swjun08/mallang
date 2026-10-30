@@ -161,7 +161,7 @@
     count.t = setTimeout(saveStats, 1000);
   }
 
-  // ponytail: 탭 여러 개가 동시에 쓰면 몇 건 빠질 수 있다. 오늘 숫자 보여주기 용도라 감수.
+  // 탭 여러 개가 동시에 쓰면 몇 건 빠질 수 있다. 오늘 숫자 보여주기 용도라 감수.
   async function saveStats() {
     const add = pendingStats;
     pendingStats = null;
