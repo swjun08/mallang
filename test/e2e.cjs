@@ -39,7 +39,7 @@ ytd-commentbox,ytd-comment-view-model{display:block;margin-bottom:24px}
 #footer{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}#footer span{padding:9px 16px;border-radius:18px;font-weight:600}
 #header-author{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600}#published-time-text{font-weight:400;color:#888}
 #content-text{display:block;line-height:20px;margin-top:2px}
-.av{float:left;width:40px;height:40px;border-radius:50%;background:#bbb;margin-right:16px}ytd-comment-view-model #main{overflow:hidden}
+.av{float:left;width:40px;height:40px;border-radius:50%;background:#bbb;margin-right:16px}ytd-comment-view-model #main{display:flow-root}
 </style></head><body>
 <ytd-comments-header-renderer><div id="title"><div id="leading-section"><h2 id="count">댓글 ${COMMENTS.length}개</h2></div><div id="additional-section">정렬 기준</div></div></ytd-comments-header-renderer>
 <ytd-commentbox><div class="av"></div><div id="main"><div id="creation-box"><div id="contenteditable-root" contenteditable="true"></div></div><div id="footer"><span>취소</span><span style="background:#065fd4;color:#fff">댓글</span></div></div></ytd-commentbox>
