@@ -77,6 +77,13 @@ ${panel ? '<div id="contents" style="height:220px;overflow-y:auto;border:1px sol
   const p = await ctx.newPage();
   p.on('pageerror', (e) => log.push('[pageerror] ' + e.message));
 
+  // 0) README용: 말랑을 끈 화면(원래 댓글)
+  await setStorage({ enabled: false });
+  await p.goto('https://www.youtube.com/mallang-test');
+  await sleep(800);
+  await p.screenshot({ path: `${OUT}/0-before.png`, fullPage: true });
+  await setStorage({ enabled: true });
+
   // 1) 키 없음 → 사전에 걸린 것만 가림
   await p.goto('https://www.youtube.com/mallang-test');
   await sleep(1500);
@@ -102,6 +109,7 @@ ${panel ? '<div id="contents" style="height:220px;overflow-y:auto;border:1px sol
   step('보통: 조롱·욕설 순화, 꺼져는 가림, 비꼼은 그대로 ' + JSON.stringify(modes),
     modes[0] === 'ORIG' && modes[1].startsWith('영상 구성이') && modes[2].startsWith('자막 폰트') && modes[3] === 'HIDDEN' && modes[4] === 'ORIG' && modes[5] === 'ORIG');
   step('묶음 요청 1번 (' + calls + ')', calls === 1);
+  await p.screenshot({ path: `${OUT}/2a-after.png`, fullPage: true });
   step('머리 상태 줄', (await p.textContent('.ml-status').catch(() => '')).includes('3개'));
 
   // 3) 칩 → 카드 → 원문 보기
