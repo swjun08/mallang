@@ -167,8 +167,8 @@ ${panel ? '<div id="contents" style="height:220px;overflow-y:auto;border:1px sol
   await pop.click('#key-clear');
   await pop.fill('#key', 'AIzaSyFakeGeminiKey');
   await pop.click('#key-form button');
-  step('키 형식 오류 안내', (await pop.isVisible('#key-error')) && (await pop.textContent('#key-error')).includes('sk-ant-api'));
-  await pop.fill('#key', ' "sk-ant-api03-' + 'a'.repeat(30) + 'WXYZ" \n');
+  step('키 형식 오류 안내', (await pop.isVisible('#key-error')) && (await pop.textContent('#key-error')).includes('sk-ant-'));
+  await pop.fill('#key', ' "sk-ant-usr-' + 'a'.repeat(30) + 'WXYZ" \n');
   await pop.click('#key-form button');
   await sleep(300);
   step('키 다듬어 저장 ' + JSON.stringify(await pop.textContent('#key-label')), (await pop.textContent('#key-label')).includes('…WXYZ'));

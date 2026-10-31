@@ -104,7 +104,7 @@ function checkKey(raw) {
   if (!key) return { error: 'Claude API 키를 붙여 넣어 주세요.' };
   if (key.startsWith('sk-ant-oat')) return { error: 'Claude 로그인 토큰이라 쓸 수 없어요. Claude Console → API Keys에서 만든 키를 넣어 주세요.' };
   if (key.startsWith('sk-ant-admin')) return { error: '관리자 키라 쓸 수 없어요. 일반 API 키를 넣어 주세요.' };
-  if (!/^sk-ant-api\d*-[\w-]{20,}$/.test(key)) return { error: 'Claude API 키는 sk-ant-api로 시작해요. 끝까지 복사됐는지 확인해 주세요.' };
+  if (!/^sk-ant-[a-z]+\d*-[\w-]{20,}$/.test(key)) return { error: 'Claude API 키는 sk-ant-로 시작해요. 끝까지 복사됐는지 확인해 주세요.' };
   return { key };
 }
 
